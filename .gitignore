@@ -1,0 +1,4 @@
+node_modules/*/
+.jshintrc
+meme/
+.DS_Store
