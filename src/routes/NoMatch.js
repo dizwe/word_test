@@ -6,7 +6,7 @@ const NoMatch = ({location})=>{
     <div>
       헤에에
     </div>
-  );
+  );  
 };
 
 export default NoMatch;
