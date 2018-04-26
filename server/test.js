@@ -77,7 +77,7 @@ app.get('/bunches',(req,res,next)=>{
   Bunch.insertMany(bunches, function(err, bunch){
       if(err) return console.log(err);
       console.dir(bunch);// ???
-  })
+  });
   // var bunch = new Bunch({
   //   word : "배고프다",
   //   mean : "I'm hungry",
