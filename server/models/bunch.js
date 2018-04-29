@@ -7,7 +7,8 @@ var BunchSchema = new Schema({
   mean : String,
   eg : Array,
   cf : Array,
-  written_date: { type: Date, default: Date.now  }
+  written_date: { type: Date, default: Date.now  },
+  seen : {type:Number,default:0},
 });
 
 var Bunch = mongoose.model('Bunch', BunchSchema);

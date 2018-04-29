@@ -3,3 +3,4 @@ node_modules/*/
 meme/
 .DS_Store
 .aws/
+config/
