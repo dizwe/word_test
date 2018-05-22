@@ -4,3 +4,4 @@ meme/
 .DS_Store
 .aws/
 config/
+server/node_modules/
