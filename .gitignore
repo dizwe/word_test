@@ -5,3 +5,5 @@ meme/
 .aws/
 config/
 server/node_modules/
+server/**/node_modules/
+*.zip
