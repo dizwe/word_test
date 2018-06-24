@@ -21,7 +21,7 @@ class Testing extends Component {
         this.setState({
           studying_num:this.state.studying_num-1
         });
-      }else{alert('첫 단어')}
+      }else{alert('첫 단어');}
       //뭘 했던지간에 다시 안보이는 상태로 만들어야함
       this.props.ModeToFalse();
     }
@@ -32,9 +32,9 @@ class Testing extends Component {
         this.setState({
           studying_num:this.state.studying_num+1
         });
-      }else{alert('마지막 단어')}
+      }else{alert('마지막 단어');}
       this.props.ModeToFalse();
-    };
+    }
 
     selected_word(e){
       console.log(e.target.value);
@@ -48,7 +48,7 @@ class Testing extends Component {
       let word_list=[];
       for(let i=0;i<this.props.trimmed_bunchs.length;i++){
         let adding_list = (
-            <li key={i} value={i} onClick={this.selected_word}>{this.props.trimmed_bunchs[i]['word']}</li>) ;
+            <li key={i} value={i} onClick={this.selected_word}>{this.props.trimmed_bunchs[i]['word']}</li>);
         word_list.push(adding_list);
       }
 
