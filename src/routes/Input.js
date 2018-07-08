@@ -14,23 +14,6 @@ class Input extends Component{
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handle_post_text(text){
-    let changed_text = text.replace(/\n/g,":>");
-    changed_text = changed_text.replace(/\t/g,"\\t");
-
-    axios.post(invoke_url+'/bunches',{
-      test_string: changed_text,
-    }).then(function (response) {
-      console.log(1234);
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(4565);
-      console.log(error);
-    });
-
-  }
-
 // event 있는거랑없는거랑
   handleChange(event){
     this.setState({
@@ -39,12 +22,27 @@ class Input extends Component{
   }
 
   handleClick(){
-    // check false로 바꾸고 받은 string 넘겨주기
+    // check false로 바꾸고 받은 string post하기
     this.setState({
       check : false,
     });
     var text = this.state.text;
-    this.props.onPostText(text);
+    let changed_text = text.replace(/\n/g,":>");
+    changed_text = changed_text.replace(/\t/g,"\\t");
+
+    axios.post(invoke_url+'/bunches',{
+      test_string: changed_text,
+    }).then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+    // this.setState({
+    //   trimmed_bunchs:string_to_test_dict(text),
+    //   show_mode:false, //그냥 다시 한번 설정하는거다. setstate는 통째로 하는거니까
+    // });
   }
 
   render(){
