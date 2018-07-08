@@ -14,6 +14,22 @@ class Input extends Component{
     this.handleClick = this.handleClick.bind(this);
   }
 
+  handle_post_text(text){
+    let changed_text = text.replace(/\n/g,":>");
+    changed_text = changed_text.replace(/\t/g,"\\t");
+
+    axios.post(invoke_url+'/bunches',{
+      test_string: changed_text,
+    }).then(function (response) {
+      console.log(1234);
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(4565);
+      console.log(error);
+    });
+
+  }
 
 // event 있는거랑없는거랑
   handleChange(event){

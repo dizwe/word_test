@@ -56,7 +56,8 @@ class Testing extends Component {
     }
 
     render() {
-      console.log(this.props.trimmed_bunchs[0]['word']);
+      console.log(this.props.trimmed_bunchs);
+
       let show_meaning_p =(
         <p>
           <li>{this.props.trimmed_bunchs[this.state.studying_num]['word']}</li>

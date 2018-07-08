@@ -22,6 +22,7 @@ class Tester extends Component {
         };
         this.handle_change_mode=this.handle_change_mode.bind(this);
         this.handle_post_text = this.handle_post_text.bind(this);
+        this.get_trimmed_bunches = this.get_trimmed_bunches.bind(this);
     }
 
     handle_change_mode(){
@@ -30,10 +31,21 @@ class Tester extends Component {
       });
     }
 
+    get_trimmed_bunches(){
+      axios.get(invoke_url+'/bunches',{
+      }).then(function (response) {
+        console.log(response);
+        return response;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+
     handle_post_text(text){
       let changed_text = text.replace(/\n/g,":>");
-      changed_text = text.replace(/\t/g,"\\t");
-      console.log(changed_text);
+      changed_text = changed_text.replace(/\t/g,"\\t");
+      
       axios.post(invoke_url+'/bunches',{
         test_string: changed_text,
       }).then(function (response) {
@@ -65,7 +77,7 @@ class Tester extends Component {
                   <Testing show_mode={this.state.show_mode}
                      onChangeMode = {this.handle_change_mode}
                      ModeToFalse = {()=>this.setState({show_mode:false})}
-                     trimmed_bunchs={this.state.trimmed_bunchs}/> )}/>
+                     trimmed_bunchs={this.get_trimmed_bunches()}/> )}/>
                 <Route component={NoMatch}/>
               </Switch>
               </Router>
