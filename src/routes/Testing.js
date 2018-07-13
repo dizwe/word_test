@@ -44,8 +44,8 @@ class Testing extends Component {
     componentDidMount(){
       console.log("componentDidMount");
       let that = this;
-      axios.get(invoke_url+'/bunches',{
-      }).then(function(response) {
+      axios.get(invoke_url+'/bunches')
+      .then(function(response) {
         that.setState({
           trimmed_bunches : response.data,
         });
@@ -69,6 +69,14 @@ class Testing extends Component {
     next_word(){
       // 자료보다 많으면 안되네까
       if(this.state.studying_num<this.state.trimmed_bunches.length-1){
+        axios.put(invoke_url+'/bunches',{
+          bunch_id: this.state.trimmed_bunches[this.state.studying_num]._id,
+        }).then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
         this.setState({
           studying_num:this.state.studying_num+1
         });

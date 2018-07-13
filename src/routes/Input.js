@@ -1,6 +1,8 @@
 // {}하는 이유?
 import React,{Component} from 'react';
 import {Redirect} from 'react-router-dom';
+import axios from 'axios';
+const invoke_url= 'https://9vw3fq4trj.execute-api.ap-northeast-2.amazonaws.com/word_test_api';
 class Input extends Component{
   constructor(props){
     // 이거의 의미는 뭘까
@@ -39,10 +41,6 @@ class Input extends Component{
       console.log(error);
     });
 
-    // this.setState({
-    //   trimmed_bunchs:string_to_test_dict(text),
-    //   show_mode:false, //그냥 다시 한번 설정하는거다. setstate는 통째로 하는거니까
-    // });
   }
 
   render(){
