@@ -18,18 +18,15 @@ class Testing extends Component {
 
         this.next_word = this.next_word.bind(this);
         this.prev_word = this.prev_word.bind(this);
+        this.idn = this.idn.bind(this);
         this.selected_word = this.selected_word.bind(this);
         this.mapWordList = this.mapWordList.bind(this);
         //
         this.handle_change_mode=this.handle_change_mode.bind(this);
         this.mode_to_false = this.mode_to_false.bind(this);
-        // this.handle_post_text = this.handle_post_text.bind(this);
     }
 
     handle_change_mode(){
-      console.log(1111);
-      console.log(this.state.show_mode);
-
       this.setState({
         show_mode:!(this.state.show_mode),
       });
@@ -69,9 +66,8 @@ class Testing extends Component {
     next_word(){
       // 자료보다 많으면 안되네까
       if(this.state.studying_num<this.state.trimmed_bunches.length-1){
-        axios.put(invoke_url+'/bunches',{
-          bunch_id: this.state.trimmed_bunches[this.state.studying_num]._id,
-        }).then(function (response) {
+        this.dt = JSON.stringify({"bunch_id": this.state.trimmed_bunches[this.state.studying_num]._id});
+        axios.put(invoke_url+'/bunches',this.dt).then(function (response) {
           console.log(response);
         })
         .catch(function (error) {
@@ -82,6 +78,20 @@ class Testing extends Component {
         });
       }else{alert('마지막 단어');}
       this.mode_to_false();
+    }
+
+    idn(){
+      console.log( this.state.trimmed_bunches[this.state.studying_num]._id);
+        axios.put('https://9vw3fq4trj.execute-api.ap-northeast-2.amazonaws.com/word_test_api/bunches/idn',{
+          bunch_id: this.state.trimmed_bunches[this.state.studying_num]._id,
+        }).then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(13131);
+          console.log(error);
+          console.log(1212)
+        });
     }
 
     selected_word(e){
@@ -115,7 +125,12 @@ class Testing extends Component {
       let no_meaning_p = (
         <p>
           <li>{this.state.trimmed_bunches[this.state.studying_num].word}</li>
+            <li>{this.state.trimmed_bunches[this.state.studying_num].seen}</li>
         </p>);
+
+      let idn_button = (
+              <button onClick = {this.idn}>IDN</button>);
+
 
       return(
           <div>
@@ -124,6 +139,7 @@ class Testing extends Component {
             <button onClick ={this.prev_word}>PREV</button>
             <button onClick ={this.next_word}>NEXT</button>
             <button onClick ={()=>this.handle_change_mode()}>SHOW</button>
+            {this.state.trimmed_bunches[this.state.studying_num].seen>=3?idn_button:""}
           </div>
           <div>
             <h1>[단어 목록]</h1>
