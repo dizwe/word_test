@@ -88,9 +88,7 @@ class Testing extends Component {
           console.log(response);
         })
         .catch(function (error) {
-          console.log(13131);
           console.log(error);
-          console.log(1212)
         });
     }
 

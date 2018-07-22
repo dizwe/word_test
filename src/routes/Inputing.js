@@ -2,8 +2,11 @@
 import React,{Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.css';
+import {FormGroup, Input} from 'reactstrap';
+
 const invoke_url= 'https://9vw3fq4trj.execute-api.ap-northeast-2.amazonaws.com/word_test_api';
-class Input extends Component{
+class Inputing extends Component{
   constructor(props){
     // 이거의 의미는 뭘까
     super(props);
@@ -46,14 +49,16 @@ class Input extends Component{
   render(){
     return (
       <div>
-        {!this.state.check? <Redirect to='/test'/>:"NO"}
-          <textarea onChange = {this.handleChange} value = {this.state.text} rows="40" cols="50"></textarea>
+        <FormGroup>
+          <Input onChange = {this.handleChange} value = {this.state.text} style={{ height: 500 }} type="textarea" />
           <a onClick = {this.handleClick}><button type = "button">Submit</button></a>
-      </div>
+        </FormGroup>
+        {!this.state.check? <Redirect to='/test'/>:""}
+        </div>
     );
   }
 }
 
 
 //default 의미가 뭐지
-export default Input;
+export default Inputing;
