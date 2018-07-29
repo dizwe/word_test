@@ -8,7 +8,14 @@ import {Breadcrumb, BreadcrumbItem} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import {Button} from 'reactstrap';
 import {Container, Row, Col } from 'reactstrap';
-
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink } from 'reactstrap';
 const propTypes = {
 };
 const defaultProps = {
@@ -17,21 +24,37 @@ class Tester extends Component {
     constructor(props) {
         super(props);
         this.state={
+          isOpen: false
         };
+        this.toggle= this.toggle.bind(this);
     }
 
+    toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+    }
 
     render() {
         return(
             <div>
             <Container>
             <Row>
-            <Col sm="3"><Button color="warning">word_test</Button></Col>
-             <Col sm="9">
-             <Breadcrumb>
-               <BreadcrumbItem active><a href="#">Add Word</a></BreadcrumbItem>
-               <BreadcrumbItem active><a href="#">Word Test</a></BreadcrumbItem>
-             </Breadcrumb>
+              <Col xs="12">
+              <Navbar color="dark" dark expand="md">
+                <NavbarBrand>word_test</NavbarBrand>
+                <NavbarToggler onClick={this.toggle} />
+                <Collapse isOpen={this.state.isOpen} navbar>
+                  <Nav className="ml-auto" navbar>
+                    <NavItem>
+                      <NavLink href="/input/">ADD WORD</NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink href="/test/">WORD TEST</NavLink>
+                    </NavItem>
+                  </Nav>
+                </Collapse>
+              </Navbar>
             </Col>
             </Row>
 
