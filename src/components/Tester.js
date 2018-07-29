@@ -33,10 +33,10 @@ class Tester extends Component {
                <BreadcrumbItem active><a href="#">Word Test</a></BreadcrumbItem>
              </Breadcrumb>
             </Col>
-              </Row>
+            </Row>
 
               <Row>
-              <Col>
+              <Col sm={{ size: 10, offset: 1 }}>
              <Router>
               <Switch>
                 // 스마트 라우트에서 state를 가지고 있다가 다른 컴포넌트로 그걸 보내주고 하면 post같이 쓰이겠다

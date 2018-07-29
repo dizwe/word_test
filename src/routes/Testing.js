@@ -2,6 +2,10 @@ import React, { Component} from 'react';
 import PropTypes from 'prop-types';
 import string_to_test_dict from '../components/string_to_test_dict';
 import axios from 'axios';
+import {Container, Row, Col } from 'reactstrap';
+import { ListGroup, ListGroupItem } from 'reactstrap';
+import { Card, Button, CardTitle, CardText} from 'reactstrap';
+
 const invoke_url= 'https://9vw3fq4trj.execute-api.ap-northeast-2.amazonaws.com/word_test_api';
 const propTypes = {
 };
@@ -105,7 +109,7 @@ class Testing extends Component {
       let word_list=[];
       for(let i=0;i<this.state.trimmed_bunches.length;i++){
         let adding_list = (
-            <li key={i} value={i} onClick={this.selected_word}>{this.state.trimmed_bunches[i].word}</li>);
+            <ListGroupItem key={i} value={i} onClick={this.selected_word}>{this.state.trimmed_bunches[i].word}</ListGroupItem>);
         word_list.push(adding_list);
       }
 
@@ -115,34 +119,55 @@ class Testing extends Component {
     render() {
       if(this.state.trimmed_bunches.length!=0){
       let show_meaning_p =(
-        <p>
-          <li>{this.state.trimmed_bunches[this.state.studying_num].word}</li>
-          <li>{this.state.trimmed_bunches[this.state.studying_num].mean}</li>
-        </p>
+        <Card body>
+         <CardTitle>{this.state.trimmed_bunches[this.state.studying_num].word}</CardTitle>
+        <CardText>{this.state.trimmed_bunches[this.state.studying_num].mean}</CardText>
+        <Button color="primary" size="sm" onClick ={()=>this.handle_change_mode()}>Small Button</Button>{' '}
+        {this.state.trimmed_bunches[this.state.studying_num].seen>=3?idn_button:""}
+       </Card>
         );
-      let no_meaning_p = (
-        <p>
-          <li>{this.state.trimmed_bunches[this.state.studying_num].word}</li>
-            <li>{this.state.trimmed_bunches[this.state.studying_num].seen}</li>
-        </p>);
+
 
       let idn_button = (
-              <button onClick = {this.idn}>IDN</button>);
+          <Button color="primary" size="sm" onClick = {this.idn}>Small Button</Button>
+          );
+
+      let no_meaning_p = (
+        <Card body>
+         <CardTitle>{this.state.trimmed_bunches[this.state.studying_num].word}</CardTitle>
+         <Button color="primary" size="sm" onClick ={()=>this.handle_change_mode()}>Small Button</Button>{' '}
+         {this.state.trimmed_bunches[this.state.studying_num].seen>=3?idn_button:""}
+
+       </Card>
+     );
+
 
 
       return(
           <div>
+          <Container>
+          <Row>
+          <Col md="1"xs="1">
+            <button onClick ={this.prev_word}>PREV</button>
+          </Col>
+          <Col md="5"xs="10">
           <div className="inline">
             {this.state.show_mode? show_meaning_p:no_meaning_p}
-            <button onClick ={this.prev_word}>PREV</button>
+          </div>
+          </Col>
+          <Col md="1"xs="1">
             <button onClick ={this.next_word}>NEXT</button>
-            <button onClick ={()=>this.handle_change_mode()}>SHOW</button>
-            {this.state.trimmed_bunches[this.state.studying_num].seen>=3?idn_button:""}
-          </div>
+          </Col>
+          <Col md="5" xs="12">
           <div>
-            <h1>[단어 목록]</h1>
+            <p>[단어 목록]</p>
+            <ListGroup>
             {this.mapWordList()}
+            </ListGroup>
           </div>
+          </Col>
+          </Row>
+          </Container>
           </div>
       );
     }else{
