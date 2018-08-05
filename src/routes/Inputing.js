@@ -5,6 +5,7 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 import {FormGroup, Input} from 'reactstrap';
 import { Button } from 'reactstrap';
+import '../css/Inputing.css';
 
 const invoke_url= 'https://9vw3fq4trj.execute-api.ap-northeast-2.amazonaws.com/word_test_api';
 class Inputing extends Component{
@@ -51,11 +52,11 @@ class Inputing extends Component{
     return (
       <div>
         <FormGroup>
-          <Input onChange = {this.handleChange} value = {this.state.text} style={{ height: 500 }} type="textarea" />
-          <a onClick = {this.handleClick}><Button color="success">Submit</Button></a>
+          <Input className="input-box" onChange = {this.handleChange} value = {this.state.text} type="textarea" />
+          <a className ="submit-button" onClick = {this.handleClick}><Button color="secondary">Submit</Button></a>
         </FormGroup>
         {!this.state.check? <Redirect to='/test'/>:""}
-        </div>
+      </div>
     );
   }
 }

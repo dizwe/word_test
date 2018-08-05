@@ -5,7 +5,7 @@ import axios from 'axios';
 import {Container, Row, Col } from 'reactstrap';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import { Card, Button, CardTitle, CardText} from 'reactstrap';
-// import logo from '../img/left.png';
+import '../css/Testing.css';
 
 const invoke_url= 'https://9vw3fq4trj.execute-api.ap-northeast-2.amazonaws.com/word_test_api';
 const propTypes = {
@@ -123,20 +123,20 @@ class Testing extends Component {
         <Card body>
          <CardTitle>{this.state.trimmed_bunches[this.state.studying_num].word}</CardTitle>
         <CardText>{this.state.trimmed_bunches[this.state.studying_num].mean}</CardText>
-        <Button color="primary" size="sm" onClick ={()=>this.handle_change_mode()}>Small Button</Button>{' '}
+        <Button color="secondary" size="sm" onClick ={()=>this.handle_change_mode()}>뜻 닫기</Button>{' '}
         {this.state.trimmed_bunches[this.state.studying_num].seen>=3?idn_button:""}
        </Card>
         );
 
 
       let idn_button = (
-          <Button color="primary" size="sm" onClick = {this.idn}>Small Button</Button>
+          <Button color="warning" size="sm" onClick = {this.idn}>Small Button</Button>
           );
 
       let no_meaning_p = (
         <Card body>
          <CardTitle>{this.state.trimmed_bunches[this.state.studying_num].word}</CardTitle>
-         <Button color="primary" size="sm" onClick ={()=>this.handle_change_mode()}>Small Button</Button>{' '}
+         <Button color="secondary" size="sm" onClick ={()=>this.handle_change_mode()}>뜻 보기</Button>{' '}
          {this.state.trimmed_bunches[this.state.studying_num].seen>=3?idn_button:""}
 
        </Card>
@@ -145,33 +145,33 @@ class Testing extends Component {
 
 
       return(
+        <Container>
           <div>
-          <Container>
-          <Row>
-          <Col md="1"xs="1">
-            <img src ="https://s3.ap-northeast-2.amazonaws.com/fittingcal/left.png"/>
-            <button onClick ={this.prev_word}>PREV</button>
+          <Row id="hi">
+
+          <Col md="1"xs="1"  className="image-col">
+            <img onClick ={this.prev_word} className ="naviage-button" src ="https://s3.ap-northeast-2.amazonaws.com/fittingcal/left.png" />
           </Col>
-          <Col md="5"xs="10">
+          <Col md="6"xs="10">
           <div className="inline">
             {this.state.show_mode? show_meaning_p:no_meaning_p}
           </div>
           </Col>
-          <Col md="1"xs="1">
-              <img src ="https://s3.ap-northeast-2.amazonaws.com/fittingcal/right.png"/>
-            <button onClick ={this.next_word}>NEXT</button>
+          <Col className ="divide-test-list" md="1"xs="1">
+              <img onClick ={this.next_word} className ="naviage-button" src ="https://s3.ap-northeast-2.amazonaws.com/fittingcal/right.png"/>
           </Col>
-          <Col md="5" xs="12">
+
+          <Col md="4" xs="12">
           <div>
-            <p>[단어 목록]</p>
+            <p className ="list-title">[단어 목록]</p>
             <ListGroup>
             {this.mapWordList()}
             </ListGroup>
           </div>
           </Col>
           </Row>
-          </Container>
           </div>
+        </Container>
       );
     }else{
       return(<div><p>WATING...</p></div>);

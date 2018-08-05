@@ -16,6 +16,8 @@ import {
   Nav,
   NavItem,
   NavLink } from 'reactstrap';
+import '../css/Tester.css';
+
 const propTypes = {
 };
 const defaultProps = {
@@ -38,11 +40,10 @@ class Tester extends Component {
     render() {
         return(
             <div>
-            <Container>
             <Row>
               <Col xs="12">
               <Navbar color="dark" dark expand="md">
-                <NavbarBrand>word_test</NavbarBrand>
+                <NavbarBrand className="brand">WORD_TEST</NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
                   <Nav className="ml-auto" navbar>
@@ -58,7 +59,7 @@ class Tester extends Component {
             </Col>
             </Row>
 
-              <Row>
+            <Row className="all-content">
               <Col sm={{ size: 10, offset: 1 }}>
              <Router>
               <Switch>
@@ -69,8 +70,7 @@ class Tester extends Component {
               </Switch>
               </Router>
               </Col>
-              </Row>
-             </Container>
+            </Row>
             </div>
         );
     }

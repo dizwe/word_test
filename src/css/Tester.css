@@ -1,0 +1,7 @@
+.all-content{
+  margin-top:30px
+}
+a:not([href]):not([tabindex]){
+  color:#F0C05A;
+   font-weight: bold;
+}
