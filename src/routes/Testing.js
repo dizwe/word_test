@@ -5,6 +5,7 @@ import axios from 'axios';
 import {Container, Row, Col } from 'reactstrap';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import { Card, Button, CardTitle, CardText} from 'reactstrap';
+// import logo from '../img/left.png';
 
 const invoke_url= 'https://9vw3fq4trj.execute-api.ap-northeast-2.amazonaws.com/word_test_api';
 const propTypes = {
@@ -148,6 +149,7 @@ class Testing extends Component {
           <Container>
           <Row>
           <Col md="1"xs="1">
+            <img src ="https://s3.ap-northeast-2.amazonaws.com/fittingcal/left.png"/>
             <button onClick ={this.prev_word}>PREV</button>
           </Col>
           <Col md="5"xs="10">
@@ -156,6 +158,7 @@ class Testing extends Component {
           </div>
           </Col>
           <Col md="1"xs="1">
+              <img src ="https://s3.ap-northeast-2.amazonaws.com/fittingcal/right.png"/>
             <button onClick ={this.next_word}>NEXT</button>
           </Col>
           <Col md="5" xs="12">
