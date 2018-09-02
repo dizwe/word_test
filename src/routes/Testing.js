@@ -123,6 +123,8 @@ class Testing extends Component {
         <Card body>
          <CardTitle>{this.state.trimmed_bunches[this.state.studying_num].word}</CardTitle>
         <CardText>{this.state.trimmed_bunches[this.state.studying_num].mean}</CardText>
+        <CardText>EX){this.state.trimmed_bunches[this.state.studying_num].eg}</CardText>
+        <CardText>CF){this.state.trimmed_bunches[this.state.studying_num].cf}</CardText>
         <Button color="secondary" size="sm" onClick ={()=>this.handle_change_mode()}>뜻 닫기</Button>{' '}
         {this.state.trimmed_bunches[this.state.studying_num].seen>=3?idn_button:""}
        </Card>
