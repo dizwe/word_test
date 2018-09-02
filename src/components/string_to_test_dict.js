@@ -1,7 +1,10 @@
 module.exports = function(test_string){
   // 한 번치 분리
   let _splited_string = test_string.split('*');
-  let bunch = _splited_string.filter(x=>x.search(/[^123| \n]/)!=-1);
+  
+  // 아니면 한글이나 영어나 중국어 있으면 바꿔라 이런건 안되려나?
+  // 뒤에 적힌거를 포함하지 않는 친구가 있을 때 && 5글자 이상일때이걸 해라
+  let bunch = _splited_string.filter(x=>x.search(/[^123| \t↵\n]/)!=-1&&x.length>=5);
 
   // 번치에서 단어 분리
   // 첫번째로 나오는 | 만 파싱하기 위해 split 말고 indexOf를 사용함
