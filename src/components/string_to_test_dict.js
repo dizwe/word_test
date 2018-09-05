@@ -1,9 +1,6 @@
 module.exports = function(test_string){
   // 한 번치 분리
   let _splited_string = test_string.split('*');
-
-  // 아니면 한글이나 영어나 중국어 있으면 바꿔라 이런건 안되려나?
-  // 뒤에 적힌거를 포함하지 않는 친구가 있을 때 && 5글자 이상일때이걸 해라
   let bunch = _splited_string.filter(x=>x.search(/[^123|\:> \t↵\n]/)!=-1&&x.length>=5);
 
   // 번치에서 단어 분리
@@ -15,15 +12,20 @@ module.exports = function(test_string){
 
   for(let i=0; i<bunch.length; i++){
     // :를 slice로 생각해야 하는군... 쳇
-    // |를 아예 안적은
     word = bunch[i].slice(0,_spliting_bunch_index[i]?_spliting_bunch_index[i]:bunch.length);
-   // |를 안적은 경우에는 etc를 아예 빈칸으로 둠.
-   let etc = bunch[i].slice(_spliting_bunch_index[i]?_spliting_bunch_index[i]+1:bunch[i].length);
+    // |를 안적은 경우에는 etc를 아예 빈칸으로 둠.
+    let etc = bunch[i].slice(_spliting_bunch_index[i]?_spliting_bunch_index[i]+1:bunch[i].length);
 
-    let splited_etc = etc.split(/:>/g);
+    let splited_etc = etc.split(/(e.g.|c.f.)/g);
+    //e.g./ c.f.가 있으면 그 다음에 실제 내용이 이을거라 가정하고 만ㄷ
     mean = splited_etc[0];
-    cf = splited_etc.filter(x=>x.indexOf('c.f.')!=-1).map(x=>x.replace('c.f.',''));
-    eg = splited_etc.filter(x=>x.indexOf('e.g.')!=-1).map(x=>x.replace('e.g.',''));
+    for (let idx = 0 ; idx<splited_etc.length; idx++){
+  	    if(splited_etc[idx].indexOf('e.g.')!=-1){
+  		    eg.push(splited_etc[idx+1]);
+        }else if(splited_etc[idx].indexOf('c.f.')!=-1){
+          cf.push(splited_etc[idx+1]);
+        }
+      }
 
     trimmed_bunchs.push({'word':word,'mean':mean, 'cf':cf, 'eg':eg});
   }
