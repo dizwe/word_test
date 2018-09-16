@@ -12,7 +12,7 @@ module.exports = {
   devServer: {
       hot: true,
       inline: true,
-      host: '0.0.0.0',
+      host: '13.209.114.196',
       port: 4000,
       contentBase: __dirname + '/public/',
       historyApiFallback: true,
